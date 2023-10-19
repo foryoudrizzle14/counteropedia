@@ -1,12 +1,13 @@
 import React from "react";
+import logo from "./images/react.png";
 
-function header() {
+function Header() {
   return (
-    <div className="pt-3 pl-2">
+    <div className="pt-3 pl-2" style={{ borderbottom: "1px soild" }}>
       <img src={logo} alt="" style={{ height: "35px", verticalAlign: "top" }} />
       <span className="h2 pt-4 text-white-50">counter app - countopedia</span>
     </div>
   );
 }
 
-export default header;
+export default Header;
