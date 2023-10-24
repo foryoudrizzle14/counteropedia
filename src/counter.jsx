@@ -14,7 +14,9 @@ export default class Counter extends React.Component {
     alert("Attack clicked");
     this.setState((previousState) => return {
       count: previousState.count + 100)
-  }};
+  }} // this.setState{{ count: this.state.count + 1 }}}
+    // this.setState({ count: 2 });
+    // this.state.count = 2;
   
 
     this.setState((previousState) => return {
