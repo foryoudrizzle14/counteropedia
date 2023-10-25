@@ -5,70 +5,97 @@ import defend from "./images/defend.png";
 export default class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.handleAttck = this.handleAttck.bind(this);
-    this.handleDefend = this.handleDefend.bind(this);
+    this.handleAttack = this.handleAttack.bind(this);
+    this.handleDefence = this.handleDefence.bind(this);
     this.state = {
       count: 0,
+      gameStatus: "",
+      lastPlay: "",
     };
   }
 
-  handleAttck() {
-    // alert("Attack clicked");
+  handleAttack = () => {
+    //alert("Attack clicked");
     this.setState(previousState => {
+      let newCount = previousState.count + Math.round(Math.random() * 10);
       return {
-        count: previousState.count + 1,
+        count: newCount,
+        lastPlay: "Attack",
+        gameStatus: newCount > 10 ? "You Won!!" : previousState.gameStatus,
       };
     });
-  }
+    //this.state.count = 2;
+  };
 
-  handleDefend() {
-    // alert("Defend clicked");
-    // this.setState{{ count: this.state.count - 1 }}}
-    // this.setState({ count: 2 });
+  handleDefence = () => {
+    //alert("Defend clicked");
     this.setState(previousState => {
+      let newCount = previousState.count - Math.round(Math.random() * 10);
       return {
-        count: previousState.count - 1,
+        count: newCount,
+        lastPlay: "Defence",
+        gameStatus: newCount < -10 ? "You Lost!!" : previousState.gameStatus,
       };
     });
-  }
+  };
 
+  handleRandomPlay = () => {
+    let playMode = Math.round(Math.random());
+    if (playMode == 0) {
+      this.handleAttack();
+    } else {
+      this.handleDefence();
+    }
+  };
+  handleReset = () => {
+    this.setState(() => {
+      return {
+        count: 0,
+        gameStatus: "",
+        lastPlay: "",
+      };
+    });
+  };
   render() {
     return (
-      <div className="row text-black text-center">
-        <h1>Game Score: {this.state.count}</h1>
-        <p>You win at + 20 points and lose at -20 points!</p>
-        <p>Last play:</p>
-        <h3>Game Status:</h3>
+      <div className="row text-white text-center">
+        <h1>Game Score: {this.state.count} </h1>
+        <p>You win at +10 points and lose at -10 points!</p>
+        <p>Last Play:{this.state.lastPlay} </p>
+        <h3>Game Status : {this.state.gameStatus}</h3>
         <div className="col-6 col-md-3 offset-md-3">
           <img
-            styles={{
-              width: "100px",
+            style={{
+              width: "100%",
               cursor: "pointer",
-              border: "1px solid #161313",
+              border: "1px solid green",
             }}
-            className="P-4 rounded"
+            className="p-4 rounded"
             src={attack}
-            onClick={this.handleAttck}
+            onClick={this.handleAttack}
           />
         </div>
-        {/* <button onClick={this.handleAttck} style={{ width: "200px" }}>
-          +1
-        </button> */}
-        <div className="col-6 col-md-3 offset-md-3">
+        <div className="col-6 col-md-3 ">
           <img
-            styles={{
-              width: "100px",
+            style={{
+              width: "100%",
               cursor: "pointer",
-              border: "1px solid #f71414",
+              border: "1px solid red",
             }}
-            className="P-4 rounded"
+            className="p-4 rounded"
             src={defend}
-            onClick={this.handleDefend}
+            onClick={this.handleDefence}
           />
         </div>
-        {/* <button onClick={this.handleDefend} style={{ width: "200px" }}>
-          -1
-        </button> */}
+        <div className="col-12 col-md-4 offset-md-4">
+          <button className="btn btn-secondary w-100 mt-2" onClick={this.handleRandomPlay}>
+            Random Play
+          </button>
+          <br />
+          <button className="btn btn-warning w-100 mt-2" onClick={this.handleReset}>
+            Reset
+          </button>
+        </div>
       </div>
     );
   }
