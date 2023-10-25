@@ -11,20 +11,24 @@ export default class Counter extends React.Component {
   }
 
   handleAttck() {
-    alert("Attack clicked");
-    this.setState((previousState) => return {
-      count: previousState.count + 100)
-  }} // this.setState{{ count: this.state.count + 1 }}}
-    // this.setState({ count: 2 });
+    // alert("Attack clicked");
+   this.setState((previousState) => 
+   return {
+    count: previousState.count + 100,
+  };
+  });
+ // this.setState{{ count: this.state.count + 1 }}}
+  // this.setState({ count: 2 });
     // this.state.count = 2;
   
+    this.setState((previousState) => 
+    return {
+     count: previousState.count + 10,
+    };
+    });
 
-    this.setState((previousState) => return {
-      count: previousState.count + 10
-
-    })
-    // this.setState{{ count: this.state.count + 1 }}}
-    // this.setState({ count: 2 });
+    this.setState{{ count: this.state.count + 100 }}
+    this.setState{{ count: this.state.count + 10}}
     // this.state.count = 2;
   }
 
