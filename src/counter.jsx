@@ -1,5 +1,5 @@
 import React from "react";
-import attack from " ./images/attack.png";
+import attack from "./images/attack.png";
 import defend from "./images/defend.png";
 
 export default class Counter extends React.Component {
