@@ -1,12 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import attack from "./images/attack.png";
 import defend from "./images/defend.png";
 
-export default class Counter extends React.Component {
-  constructor(props) {
+interface CounterState {
+  count: number;
+  gameStatus: string;
+  lastPlay: string;
+}
+
+export default class Counter extends Component<{}, CounterState> {
+  constructor(props: {}) {
     super(props);
-    this.handleAttack = this.handleAttack.bind(this);
-    this.handleDefence = this.handleDefence.bind(this);
     this.state = {
       count: 0,
       gameStatus: "",
@@ -15,7 +19,6 @@ export default class Counter extends React.Component {
   }
 
   handleAttack = () => {
-    //alert("Attack clicked");
     this.setState(previousState => {
       let newCount = previousState.count + Math.round(Math.random() * 10);
       return {
@@ -24,11 +27,9 @@ export default class Counter extends React.Component {
         gameStatus: newCount > 10 ? "You Won!!" : previousState.gameStatus,
       };
     });
-    //this.state.count = 2;
   };
 
   handleDefence = () => {
-    //alert("Defend clicked");
     this.setState(previousState => {
       let newCount = previousState.count - Math.round(Math.random() * 10);
       return {
@@ -41,12 +42,13 @@ export default class Counter extends React.Component {
 
   handleRandomPlay = () => {
     let playMode = Math.round(Math.random());
-    if (playMode == 0) {
+    if (playMode === 0) {
       this.handleAttack();
     } else {
       this.handleDefence();
     }
   };
+
   handleReset = () => {
     this.setState(() => {
       return {
@@ -56,6 +58,7 @@ export default class Counter extends React.Component {
       };
     });
   };
+
   render() {
     return (
       <div className="row text-white text-center">
