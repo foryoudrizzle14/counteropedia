@@ -11,6 +11,7 @@ Udemy course REACT 와 .NET
 버튼을 클릭함으로 +n 또는 -가 n 을 만들어낸다. 
 random play가 가능하며 
 reset 버튼으로 다시 시작 할수 있다. 
+(typescript)
 </p>
 </div>
 
